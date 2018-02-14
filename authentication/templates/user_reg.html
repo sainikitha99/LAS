@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Registration</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/user_reg.css' %}">
+	<script type="text/javascript" src="{% static 'jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/user_reg.js' %}"></script>
+</head>
+<body>
+	Register New User
+	{% for request in requests %}
+		User: <p>{{request.user}}</p>
+		mobile: <p>{{request.mobile}}</p>
+	{% endfor %}
+</body>
+</html>
