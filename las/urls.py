@@ -22,4 +22,6 @@ from authentication.urls import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/authentication/', include(AUTH_URLS)),
+    url(r'^main_page/', include(AUTH_URLS)),
+
 ]

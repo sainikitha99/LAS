@@ -14,3 +14,7 @@ def user_registration(request):
 	requests = UserRequest.objects.all()
 	context = {"requests": requests}
 	return render(request, 'user_reg.html', context)
+def main_page(request):
+	requests = UserRequest.objects.all()
+	context = {"requests": requests}
+	return render(request, 'main_page.html', context)

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Life Alert Service</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/user_reg.css' %}">
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/user_reg.js' %}"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Life Alert Service</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Overview</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Dashboard</a></li>
+      <li class="pull-right"><a href="#">Login</a></li>
+      <li><a href="{% url 'user_registrations' %}">Register</a></li>
+      <li><a href="#">About us</a></li>
+      <li><a href="#">contact us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  {% block content_body %}{% endblock %}
+
+</div>
+
+</body>
+</html>
