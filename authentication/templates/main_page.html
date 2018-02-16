@@ -16,23 +16,29 @@
 </head>
 <body>
 
+<div class="container-fluid">
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Life Alert Service</a>
+    <div class="row">
+      <div class="col-md-10">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Life Alert Service</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{% url 'main_page' %}">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <ul class="nav navbar-nav">
+          <li><a href="#">Login</a></li>
+          <li><a href="{% url 'user_registrations' %}">Register</a></li>
+        </ul>
+      </div>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Overview</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Dashboard</a></li>
-      <li class="pull-right"><a href="#">Login</a></li>
-      <li><a href="{% url 'user_registrations' %}">Register</a></li>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">contact us</a></li>
-    </ul>
-  </div>
 </nav>
+  </div>
 
 <div class="container">
   {% block content_body %}{% endblock %}
