@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+CORE_URLS = ""
 AUTH_URLS = ""
 from authentication.urls import *
+from core.urls import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/authentication/', include(AUTH_URLS)),
-    url(r'^main_page/', include(AUTH_URLS)),
+    url(r'^auth/', include(AUTH_URLS)),
+    url(r'^$', include(CORE_URLS)),
 
 ]

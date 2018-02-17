@@ -1,0 +1,18 @@
+.btn-primary {
+  margin-left:10px;
+  padding:14px 12px;
+  border-radius: 12px;
+  background-color: #808000;
+}
+.btn-default{
+  padding:10px 20px;
+}
+.form-control{
+  width: 500px;
+}
+.container{
+     display: table;
+     max-width:1200px;
+     width:auto;
+     margin:0 auto
+}
