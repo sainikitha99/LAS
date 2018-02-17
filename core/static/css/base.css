@@ -16,3 +16,13 @@
      width:auto;
      margin:0 auto
 }
+
+.las-logo img{
+    height: 126px;
+    padding: 0px 45px 0px;
+    width: 250px;
+}
+
+.las-header {
+    padding-top: 20px;
+}
