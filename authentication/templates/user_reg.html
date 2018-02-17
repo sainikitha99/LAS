@@ -1,10 +1,70 @@
 {% extends "main_page.html" %}
 
 {% block content_body %}
+<div class="container">
+  <h1 align="center">User Registration</h2>
+  <form action="#">
+		<div class="form-group">
+			<label for="first_name">First Name</label>
+			<input type="text" class="form-control" id="first_name" placeholder="Enter FirstName" name="first_name">
+		</div>
+		<div class="form-group">
+			<label for="last_name">Last Name</label>
+			<input type="text" class="form-control" id="last_name" placeholder="Enter LastName" name="last_name">
+		</div>
+		<div class="form-group">
+			<label for="gender">Gender</label>
+			<select class="form-control" id="gender">
+			<option>FEMALE</option>
+			<option>MALE</option>
+		  </select>
+  	 </div>
+		<div class="form-group">
+			<label for="dob">Date of Birth</label>
+			<input type="date" class="form-control" id="dob" placeholder="dd/mm/yy" name="dob">
+		</div>
+		<div class="form-group">
+      <label for="bld_grp">Blood Group:</label>
+      <select class="form-control" id="bld_grp">
+        <option>A +ve</option>
+				<option>A -ve</option>
+				<option>B +ve</option>
+				<option>B -ve</option>
+        <option>O +ve</option>
+				<option>O -ve</option>
+        <option>AB +ve</option>
+        <option>AB -ve</option>
+      </select>
+		</div>
+		<div class="form-group">
+			<label for="mobile">Mobile Number</label>
+			<input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile">
+		</div>
+		<div class="form-group">
+			<label for="alt_mobile">Alternate Mobile Number</label>
+			<input type="mobile" class="form-control" id="alt_mobile" placeholder="Enter alternate mobile number" name="mobile">
+		</div>
+		<div class="form-group">
+			<label for="email">Email:</label>
+			<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+		</div>
+		<div class="form-group">
+ 		 <label for="address">Address</label>
+ 		 <textarea class="form-control" id="address" placeholder="Enter Address" name="address"></textarea>
+ 	 </div>
 
-	Register New User
-	{% for request in requests %}
-		User: <p>{{request.user}}</p>
-		mobile: <p>{{request.mobile}}</p>
-	{% endfor %}
+	 <div class="form-group">
+		 <label for="password">Password</label>
+		 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+	 </div>
+	 <div class="form-group">
+		 <label for="confirm_password">Confirm Password</label>
+		 <input type="password" class="form-control" id="confirm_password" placeholder="Enter password again" name="confirm_password">
+	 </div>
+	 <div align="center">
+	 	<button type="submit" class="btn btn-default" style="margin-left;">Submit</button>
+   	<button type="reset" class="btn btn-default" style="margin-left;">Reset</button>
+  </div>
+  </form>
+</div>
 {% endblock %}

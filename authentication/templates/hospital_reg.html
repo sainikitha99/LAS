@@ -1,0 +1,54 @@
+{% extends "main_page.html" %}
+
+{% block content_body %}
+<div class="container">
+  <h1 align="center">Hospital Registration</h2>
+  <form action="#">
+		<div class="form-group">
+			<label for="hospital_name">Hospital Name</label>
+			<input type="text" class="form-control" id="hospital_name" placeholder="Enter Hospital Name" name="hospital_name">
+		</div>
+		<div class="form-group">
+
+			<label for="hos_reg_id">Hospital Registration ID</label>
+			<input type="text" class="form-control" id="hos_reg_id" placeholder="Enter Hospital Registration id" name="hos_reg_id">
+		</div>
+		<div class="form-group">
+			<label for="hos_reg_date">Date of Registration</label>
+			<input type="date" class="form-control" id="hos_reg_date" placeholder="dd/mm/yy" name="hos_reg_date">
+		</div>
+    <div class="form-group">
+			<label for="hos_dir_name">Director Name</label>
+			<input type="text" class="form-control" id="hos_dir_name" placeholder="Enter Hospital director's Name" name="hos_dir_name">
+		</div>
+    <div class="form-group">
+			<label for="ambulance_count">Number of available ambulances</label>
+			<input type="number" class="form-control" id="ambulance_count" min="0" placeholder="Enter the count of available ambulances" name="ambulance_count">
+		</div>
+    <div class="form-group">
+ 		 <label for="address">Address</label>
+ 		 <textarea class="form-control" id="address" rows="2" placeholder="Enter Address" name="address"></textarea>
+ 	 </div>
+    <div class="form-group">
+			<label for="mobile">Mobile Number</label>
+			<input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile">
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+		</div>
+		<div class="form-group">
+		 <label for="password">Password</label>
+		 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+	 </div>
+	 <div class="form-group">
+		 <label for="confirm_password">Confirm Password</label>
+		 <input type="password" class="form-control" id="confirm_password" placeholder="Enter password again" name="confirm_password">
+	 </div>
+	 <div align="center">
+	 	<button type="submit" class="btn btn-default" style="margin-left;">Submit</button>
+   	<button type="reset" class="btn btn-default" style="margin-left;">Reset</button>
+  </div>
+  </form>
+</div>
+{% endblock %}
