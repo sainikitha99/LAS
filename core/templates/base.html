@@ -34,19 +34,25 @@
           </div>
           <div class="col-md-2 las-header">
             <ul class="nav navbar-nav">
-              <li>
-                <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Login</button>
-              </li>
-              <li>
-                <div class="dropdown">
-                  <button class="btn btn-primary btn-md dropdown-toggle"  type="button" data-toggle="dropdown">Register
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li><a href="{% url 'user_registrations' %}">User</a></li>
-                      <li><a href="{% url 'hospital_registrations' %}">Hospital</a></li>
-                    </ul>
-                  </div>
-              </li>
+              {% if request.user.is_authenticated %}
+              <li>Welcome {{request.user.username}}</li>
+              <a href="{% url 'user_logout' %}" class="btn btn-primary btn-md">Logout<a>
+              {# <button type="button" class="btn btn-primary btn-md">Logout</button> #}
+              {% else %}
+                <li>
+                  <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Login</button>
+                </li>
+                <li>
+                  <div class="dropdown">
+                    <button class="btn btn-primary btn-md dropdown-toggle"  type="button" data-toggle="dropdown">Register
+                      <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url 'user_registrations' %}">User</a></li>
+                        <li><a href="{% url 'hospital_registrations' %}">Hospital</a></li>
+                      </ul>
+                    </div>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -54,6 +60,13 @@
     </div>
 
     <div class="container">
+      {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
        <!-- Modal for login-->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -67,14 +80,14 @@
             <div class="modal-body">
                  <!--login form-->
               <div class="container">
-                <form action="#">
+                <form action="{% url 'login' %}" method="post"> {% csrf_token %}
                   <div class="form-group">
                     <label for="usr"><h3>User Name</h3></label>
-                    <input type="text" class="form-control" id="text" placeholder="Enter your username" name="usr">
+                    <input type="text" class="form-control" id="text" placeholder="Enter your username" name="email">
                   </div>
                   <div class="form-group">
                     <label for="pwd"><h3>Password</h3></label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
                   </div>
                   <div class="checkbox">
                     <label><input type="checkbox" name="remember"> Remember me</label>

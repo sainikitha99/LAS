@@ -49,8 +49,8 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	dob = models.DateField(blank=True, null=True)
 	gender = models.CharField(max_length=255, blank=True, null=True, choices=GENDER_CHOICES)
-	mobile_number = models.PositiveIntegerField(blank=True, null=True)
-	alternate_number = models.PositiveIntegerField(blank=True, null=True)
+	mobile_number = models.CharField(max_length=25, blank=True, null=True)
+	alternate_number = models.CharField(max_length=25, blank=True, null=True)
 	blood_group = models.CharField(max_length=255, blank=True, null=True, choices=BLOOD_GROUP_CHOICES)
 	address = models.ForeignKey(Address, blank=True, null=True)
 
