@@ -1,28 +1,64 @@
+html, body {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.container-fluid {padding: 0px;}
+
+.container{
+    display: table;
+    width:auto;
+    margin:0 auto;
+    padding-bottom: 20px;
+}
+
+.navbar-default .navbar-nav li a, .las-footer {
+    color: white;
+}
+
+.navbar-default .navbar-nav li .dropdown-menu li a {
+    color: black;
+}
+
+.navbar-custom, .las-footer {
+    background-color: teal;
+}
+
+.las-header {
+    padding-top: 10px;
+    padding-left: 0px;
+}
+
+.las-footer  {
+    padding: 0px 30px;
+}
+
+.las-logo img{
+    height: 126px;
+    padding: 0px 50px;
+    width: 250px;
+    max-height: calc(100vh - 50px);
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5%;
+}
+
 .btn-primary {
   margin-left:10px;
   padding:14px 12px;
   border-radius: 12px;
   background-color: #808000;
 }
+
 .btn-default{
   padding:10px 20px;
 }
+
 .form-control{
   width: 500px;
-}
-.container{
-     display: table;
-     max-width:1200px;
-     width:auto;
-     margin:0 auto
-}
-
-.las-logo img{
-    height: 126px;
-    padding: 0px 45px 0px;
-    width: 250px;
-}
-
-.las-header {
-    padding-top: 20px;
 }
