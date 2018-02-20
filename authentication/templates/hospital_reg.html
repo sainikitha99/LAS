@@ -2,9 +2,17 @@
 
 {% block content_body %}
 <div class="container">
+  {% if messages %}
+		<ul class="messages">
+		    {% for message in messages %}
+		    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		    {% endfor %}
+		</ul>
+	{% endif %}
   <h1 align="center">Hospital Registration</h2>
-  <form action="#">
+  <form action="{% url 'hospital_registrations' %}" method="post">{% csrf_token %}
 		<div class="form-group">
+
 			<label for="hospital_name">Hospital Name</label>
 			<input type="text" class="form-control" id="hospital_name" placeholder="Enter Hospital Name" name="hospital_name">
 		</div>
@@ -26,17 +34,25 @@
 			<input type="number" class="form-control" id="ambulance_count" min="0" placeholder="Enter the count of available ambulances" name="ambulance_count">
 		</div>
     <div class="form-group">
- 		 <label for="address">Address</label>
- 		 <textarea class="form-control" id="address" rows="2" placeholder="Enter Address" name="address"></textarea>
- 	 </div>
+				<label for="address">Address</label>
+		 <input type="text" class="form-control" id="address_1" placeholder="Address 1" name="address_1" required><br>
+		 <input type="text" class="form-control" id="address_2" placeholder="Address 2" name="address_2"><br>
+		 <input type="text" class="form-control" id="city" placeholder="City" name="city" style="width: 50%" required><br>
+		 <input type="text" class="form-control" id="state" placeholder="State" name="state" style="width: 50%" required><br>
+		 <input type="text" class="form-control" id="pincode" placeholder="Pincode" name="pincode" style="width: 50%" required><br>
+		 <input type="text" class="form-control" id="country" placeholder="country" name="country" style="width: 50%" required><br>
+		</div>
+
     <div class="form-group">
-			<label for="mobile">Mobile Number</label>
-			<input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile">
+			<label for="hospital_mobile">Contact Number</label>
+			<input type="mobile" class="form-control" id="hospital_mobile" placeholder="Enter mobile number" name="hospital_mobile">
 		</div>
 		<div class="form-group">
 			<label for="email">Email</label>
-			<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+			<input type="email" class="form-control" id="hospital_email" placeholder="Enter email" name="hospital_email">
 		</div>
+
+
 		<div class="form-group">
 		 <label for="password">Password</label>
 		 <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">

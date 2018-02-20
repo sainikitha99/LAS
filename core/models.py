@@ -56,3 +56,14 @@ class UserProfile(models.Model):
 
 	def __unicode__(self):
 		return "%s - %s - %s" % (self.user, self.gender, self.blood_group)
+class HospitalProfile(models.Model):
+	user = models.OneToOneField(User)
+	hos_reg_id = models.CharField(max_length=255, blank=True, null=True)
+	hos_dir_name = models.CharField(max_length=255, blank=True, null=True)
+ 	hos_reg_date = models.DateField(blank=True, null=True)
+	ambulance_count = models.IntegerField(default=0)
+  	hospital_mobile = models.CharField(max_length=25, blank=True, null=True)
+	address = models.ForeignKey(Address, blank=True, null=True)
+
+	def __unicode__(self):
+		return "%s - %s - %s" %(self.user, self.hos_dir_name, self.ambulance_count)

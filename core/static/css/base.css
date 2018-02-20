@@ -1,3 +1,4 @@
+
 html, body {
     position: absolute;
     top:0;
@@ -47,11 +48,16 @@ html, body {
     left: 5%;
 }
 
-.btn-primary {
+.btn {
   margin-left:10px;
   padding:14px 12px;
   border-radius: 12px;
-  background-color: #808000;
+  background-color: #083b66;
+  color: white;
+}
+.btn:hover{
+  background-color: #55c6c9;
+  color: white;
 }
 
 .btn-default{
