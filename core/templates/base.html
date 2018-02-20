@@ -9,10 +9,16 @@
     <!-- CSS IMPORTS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script type="text/javascript" src="{% static 'js/user_reg.js' %}"></script>
 
     <!-- JS IMPORTS -->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+
 
   </head>
   <body>
@@ -39,9 +45,17 @@
               <a href="{% url 'user_logout' %}" class="btn btn-primary btn-md">Logout<a>
               {# <button type="button" class="btn btn-primary btn-md">Logout</button> #}
               {% else %}
+              <!--dropdown for login button-->
                 <li>
-                  <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">Login</button>
+                  <div class="dropdown">
+                  <button type="button" class="btn btn-primary btn-md dropdown-toggle" data-toggle="dropdown">Login
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li><a data-toggle="modal" data-target="#userModal">User</a></li>
+                      <li><a data-toggle="modal" data-target="#hospitalModal">Hospital</a></li>
+                    </ul>
                 </li>
+                <!--dropdown for register button-->
                 <li>
                   <div class="dropdown">
                     <button class="btn btn-primary btn-md dropdown-toggle"  type="button" data-toggle="dropdown">Register
@@ -67,14 +81,14 @@
         {% endfor %}
     </ul>
   {% endif %}
-       <!-- Modal for login-->
-      <div class="modal fade" id="myModal" role="dialog">
+       <!-- Modal for user login-->
+      <div class="modal fade" id="userModal" role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title">Login Form</h1>
+              <h1 class="modal-title">User Login</h1>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -102,6 +116,41 @@
         </div>
       </div>
     </div>
+    <!--Modal for hospital Login-->
+    <div class="modal fade" id="hospitalModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title">Hospital Login</h1>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+               <!--login form-->
+            <div class="container">
+              <form action="{% url 'login' %}" method="post"> {% csrf_token %}
+                <div class="form-group">
+                  <label for="usr"><h3>Hospital Id</h3></label>
+                  <input type="text" class="form-control" id="text" placeholder="Enter your Registration Id" name="hos_reg_id">
+                </div>
+                <div class="form-group">
+                  <label for="pwd"><h3>Password</h3></label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" name="remember"> Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <div class="container">
       {% block content_body %}{% endblock %}
