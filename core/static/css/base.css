@@ -37,11 +37,10 @@ html, body {
 }
 
 .las-logo img{
-    height: 126px;
-    padding: 0px 50px;
+    height: 68px;
+    padding: 0px 54px;
     width: 250px;
     max-height: calc(100vh - 50px);
-    margin: auto;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -61,4 +60,8 @@ html, body {
 
 .form-control{
   width: 500px;
+}
+
+.logged_user {
+    padding-top: 10px;
 }
