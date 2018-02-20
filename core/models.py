@@ -59,9 +59,9 @@ class UserProfile(models.Model):
 class HospitalProfile(models.Model):
 	user = models.OneToOneField(User)
 	hos_reg_id = models.CharField(max_length=255, blank=True, null=True)
-	hos_dir_name = models.CharField(max_length=255, blank = True, null = True)
+	hos_dir_name = models.CharField(max_length=255, blank=True, null=True)
  	hos_reg_date = models.DateField(blank=True, null=True)
-	ambulance_count = models.IntegerField(default = 0)
+	ambulance_count = models.IntegerField(default=0)
   	hospital_mobile = models.CharField(max_length=25, blank=True, null=True)
 	address = models.ForeignKey(Address, blank=True, null=True)
 
