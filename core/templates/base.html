@@ -65,8 +65,8 @@
                     <button class="btn btn-primary btn-md dropdown-toggle"  type="button" data-toggle="dropdown">Register
                       <span class="caret"></span></button>
                       <ul class="dropdown-menu">
-                        <li><a href="{% url 'user_registrations' %}">User</a></li>
-                        <li><a href="{% url 'hospital_registrations' %}">Hospital</a></li>
+                        <li><a href="{% url 'user_registration' %}">User</a></li>
+                        <li><a href="{% url 'hospital_registration' %}">Hospital</a></li>
                       </ul>
                     </div>
                 </li>
@@ -92,7 +92,7 @@
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h3 class="modal-title">User Login<button type="button" class="close" data-dismiss="modal">&times;</button></h3>
             </div>
             <div class="modal-body">
               <div class="container">
@@ -105,10 +105,12 @@
                     <label for="pwd"><h3>Password:</h3></label>
                     <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
                   </div>
-                  <button type="submit" class="btn btn-default">Login</button>
+                  <center>
+                    <button type="submit" class="btn btn-default forn-control">Sign In</button>
+                    -OR-
+                    <a class="btn btn-default" href="{% url 'social:begin' 'google-oauth2' %}">Sign In Using Google</a><br>
+                  </center>
                 </form>
-                <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
 
             </div><br>
             <div class="modal-footer">
@@ -125,8 +127,7 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title">Hospital Login</h1>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Hospital Login<button type="button" class="close" data-dismiss="modal">&times;</button></h3>
           </div>
           <div class="modal-body">
                <!--login form-->
@@ -140,13 +141,10 @@
                   <label for="pwd"><h3>Password</h3></label>
                   <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
                 </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="remember"> Remember me</label>
-                </div>
-                <button type="submit" class="btn btn-default">Login</button>
+                <center>
+                  <button type="submit" class="btn btn-default">Login</button>
+                </center>
               </form>
-              <p><strong>-- OR --</strong></p>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

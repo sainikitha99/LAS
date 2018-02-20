@@ -18,7 +18,6 @@ def user_registration(request):
 			messages.error(request, "Passwords didn't match")
 			return render(request, 'user_reg.html')
 
-		# create an user and userprofile
 		user_obj = User()
 		user_obj.email = data['email']
 		user_obj.first_name = data['first_name']
@@ -52,13 +51,21 @@ def user_registration(request):
 	return render(request, 'user_reg.html')
 
 
-def user_login(request):
+def login_view(request):
 	if request.POST is not None and request.POST != {}:
 
-		email = request.POST['email']
-		password = request.POST['password']
+		isHospital = False
+		hos_reg_id = ""
+		user_q = []
+		if "hos_reg_id" in request.POST:
+			hos_reg_id = request.POST['hos_reg_id']
+			hospitalprofile = HospitalProfile.objects.filter(hos_reg_id=hos_reg_id).first()
+			user_q = User.objects.filter(id=hospitalprofile.user.id)
+		else:
+			email = request.POST['email']
+			user_q = User.objects.filter(email=email)
 
-		user_q = User.objects.filter(email=email)
+		password = request.POST['password']
 		if user_q.exists():
 			user_obj = user_q.first()
 			username = user_obj.username
@@ -68,15 +75,19 @@ def user_login(request):
 				messages.success(request, "Logged In successfully")
 				return redirect('/')
 		else:
-			messages.error(request, "User does not exists.")
+			if isHospital:
+				messages.error(request, "Hospital does not exists.")
+			else:
+				messages.error(request, "User does not exists.")
 			return render(request, 'base.html')
 
 	return render(request, 'base.html')
 
 
-def user_logout(request):
+def logout_view(request):
 	logout(request)
-	return render(request, 'base.html')
+	return redirect('/')
+
 
 def hospital_registration(request):
 	if request.POST is not None and request.POST !={}:
@@ -109,27 +120,3 @@ def hospital_registration(request):
 		hos_profile.save()
 		messages.success(request, "Hospital Registration successfully completed")
  	return render(request, 'hospital_reg.html')
-def hospital_login(request):
-	if request.POST is not None and request.POST != {}:
-
-		hos_reg_id = request.POST['hos_reg_id']
-		password = request.POST['password']
-		hospitalprofile = HospitalProfile.objects.filter(hos_reg_id=hos_reg_id).first()
-		user_q = User.objects.filter(id=hospitalprofile.user.id)
-		if user_q.exists():
-			usr_obj = user_q.first()
-			username = usr_obj.username
-			user = authenticate(username=username, password=password)
-			if user:
-				login(request, user)
-				messages.success(request, "Logged In successfully")
-				return redirect('/')
-		else:
-			messages.error(request, "User does not exists.")
-			return render(request, 'base.html')
-
-	return render(request, 'base.html')
-
-def hospital_logout(request):
-	logout(request)
-	return render(request, 'base.html')
