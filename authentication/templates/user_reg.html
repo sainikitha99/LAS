@@ -10,7 +10,7 @@
 		</ul>
 	{% endif %}
   <h1 align="center">User Registration</h2>
-  <form action="{% url 'user_registrations' %}" method="post">{% csrf_token %}
+  <form action="{% url 'user_registration' %}" method="post">{% csrf_token %}
 		<div class="form-group">
 			<label for="first_name">First Name</label>
 			<input type="text" class="form-control" id="first_name" placeholder="Enter FirstName" name="first_name" required>
