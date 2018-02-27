@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content_body %}
+<div class='no-hover'>
+<h1 align='center'> My Profile</h1>
+{% if request.user.is_authenticated %}
+<div class='table no-hover'>
+<table align="center">
+  <tr class>
+  <td class='h'>Full Name</td>
+  <td>{{ request.user.username }}</td>
+</tr>
+<tr>
+  <td class='h'>Gender</td>
+  <td>{{ request.user_profile.gender }}</td>
+</tr>
+<tr>
+  <td class='h'>Date of Birth</td>
+  <td>{{ request.user_profile.dob }}</td>
+</tr>
+<tr>
+  <td class='h'>Blood Group</td>
+  <td>{{ request.user_profile.blood_group }}</td>
+</tr>
+<tr>
+  <td class='h'>Mobile Number</td>
+  <td>{{ request.user_profile.mobile }}</td>
+</tr>
+<tr>
+  <td class='h'>Email id</td>
+  <td>{{ request.user.email }}</td>
+</tr>
+<tr>
+  <td class='h'>Address</td>
+  <td>{{ request.user_profile.address }}</td>
+</tr>
+
+</table>
+</div>
+<div class="col-md-1 las-header">
+  <ul class="nav navbar-nav">
+    <a href="{% url 'edit_profile' %}" class="btn btn-primary btn-md" style="margin-left:100px;">Edit Profile<a>
+
+  </ul>
+</div>
+{% endif %}
+
+{% endblock %}

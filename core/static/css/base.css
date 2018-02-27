@@ -71,3 +71,6 @@ html, body {
 .logged_user {
     padding-top: 10px;
 }
+td,th{
+  padding: 15px;
+}

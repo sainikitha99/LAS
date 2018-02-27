@@ -4,4 +4,5 @@ from core.views import *
 
 CORE_URLS = [
 	url(r'^$', index, name='index'),
+
 ]

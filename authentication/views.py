@@ -69,6 +69,7 @@ def login_view(request):
 		if user_q.exists():
 			user_obj = user_q.first()
 			username = user_obj.username
+
 			user = authenticate(username=username, password=password)
 			if user:
 				login(request, user)
@@ -120,3 +121,8 @@ def hospital_registration(request):
 		hos_profile.save()
 		messages.success(request, "Hospital Registration successfully completed")
  	return render(request, 'hospital_reg.html')
+def view_profile(request):
+	
+	return render(request, 'view_profile.html')
+def edit_profile(request):
+	return render(request, 'edit_profile.html')
