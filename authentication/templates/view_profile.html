@@ -1,48 +1,85 @@
 {% extends "base.html" %}
 
 {% block content_body %}
-<div class='no-hover'>
+<center>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</center>
+
+
 <h1 align='center'> My Profile</h1>
 {% if request.user.is_authenticated %}
-<div class='table no-hover'>
-<table align="center">
-  <tr class>
-  <td class='h'>Full Name</td>
-  <td>{{ request.user.username }}</td>
-</tr>
-<tr>
-  <td class='h'>Gender</td>
-  <td>{{ request.user_profile.gender }}</td>
-</tr>
-<tr>
-  <td class='h'>Date of Birth</td>
-  <td>{{ request.user_profile.dob }}</td>
-</tr>
-<tr>
-  <td class='h'>Blood Group</td>
-  <td>{{ request.user_profile.blood_group }}</td>
-</tr>
-<tr>
-  <td class='h'>Mobile Number</td>
-  <td>{{ request.user_profile.mobile }}</td>
-</tr>
-<tr>
-  <td class='h'>Email id</td>
-  <td>{{ request.user.email }}</td>
-</tr>
-<tr>
-  <td class='h'>Address</td>
-  <td>{{ request.user_profile.address }}</td>
-</tr>
+  <div class='table'>
+    <table>
+      <tr class>
+        <td class='h'>Full Name</td>
+        <td>{{ request.user.username }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Gender</td>
+        <td>{{ gender }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Date of Birth</td>
+        <td>{{ dateOfBirth }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Blood Group</td>
+        <td>{{ bloodGroup }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Mobile Number</td>
+        <td>{{ mobileNumber }}</td>
+      </tr>
+      {% if alternateNumber %}
+        <tr>
+          <td class='h'>Mobile Number</td>
+          <td>{{ alternateNumber }}</td>
+        </tr>
+      {% endif %}
+      <tr>
+        <td class='h'>Email id</td>
+        <td>{{ request.user.email }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Address</td>
+        <td><textarea rows="4" cols="15">{{ address.address1 }}</textarea></td>
+      </tr>
+      {% if address.landmark %}
+        <tr>
+          <td class='h'>Landmark</td>
+          <td>{{ address.landmark }}</td>
+        </tr>  
+      {% endif %}
+      <tr>
+        <td class='h'>City</td>
+        <td>{{ address.city }}</td>
+      </tr>
+      <tr>
+        <td class='h'>State</td>
+        <td>{{ address.state }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Pincode</td>
+        <td>{{ address.pincode }}</td>
+      </tr>
+      <tr>
+        <td class='h'>Country</td>
+        <td>{{ address.country }}</td>
+      </tr>
+    </table>
 
-</table>
-</div>
-<div class="col-md-1 las-header">
-  <ul class="nav navbar-nav">
-    <a href="{% url 'edit_profile' %}" class="btn btn-primary btn-md" style="margin-left:100px;">Edit Profile<a>
-
-  </ul>
-</div>
+    </div>
+    <div class="col-md-1 las-header">
+      <ul class="nav navbar-nav">
+        <a href="{% url 'edit_profile' %}" class="btn btn-primary btn-md" style="margin-left:100px;">Edit Profile</a>
+      </ul>
+    </div>
 {% endif %}
 
 {% endblock %}

@@ -28,7 +28,8 @@
               <li class="las-logo"><img src="{% static 'images/logo.png' %}"></li>
             </ul>
           </div>
-          <div class="col-md-7 las-header">
+          
+          {% if request.user.is_authenticated %}<div class="col-md-7 las-header"> {% else %}<div class="col-md-8 las-header">{% endif %}
             <ul class="nav navbar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
               <li><a href="#">About</a></li>
@@ -43,14 +44,14 @@
                 <li class="logged_user"> {{ request.user.username }} </li>
               </ul>
             </div>
-            <div class="col-md-1 las-header">
+            <div class="col-md-1 las-header" style="left: 35px;">
               <ul class="nav navbar-nav">
-                <a href="{% url 'user_logout' %}" class="btn btn-primary btn-md">Logout<a>
+                <a href="{% url 'view_profile' %}" class="btn btn-primary btn-md" style="margin-left:-13px;">view profile<a>
               </ul>
             </div>
             <div class="col-md-1 las-header">
               <ul class="nav navbar-nav">
-                <a href="{% url 'view_profile' %}" class="btn btn-primary btn-md" style="margin-left:-13px;">view profile<a>
+                <a href="{% url 'user_logout' %}" class="btn btn-primary btn-md">Logout<a>
               </ul>
             </div>
 
@@ -83,6 +84,15 @@
           {% endif %}
         </div>
     </nav>
+    </div>
+
+    <div class="container">
+      {% block content_body %}{% endblock %}
+      <div class="container-fluid">
+        <div class="footer navbar-fixed-bottom las-footer">
+          <h4>&copy; LAS 2018, All Rights Reserved.</h4>
+        </div>
+      </div>
     </div>
 
     <div class="container">
@@ -161,16 +171,6 @@
       </div>
     </div>
   </div>
-
-    <div class="container">
-      {% block content_body %}{% endblock %}
-      <div class="container-fluid">
-        <div class="footer navbar-fixed-bottom las-footer">
-          <h4>&copy; LAS 2018, All Rights Reserved.</h4>
-        </div>
-      </div>
-    </div>
-
 
   </body>
 </html>

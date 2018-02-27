@@ -8,6 +8,15 @@
   color:black;
   text-decoration: none;
 }
+
+textarea {
+	border: none;
+}
+
+li {
+	list-style-type: none;
+}
+
 .h{
   font-weight: bold;
 }

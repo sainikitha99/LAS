@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
-from core.models import UserProfile, Address,HospitalProfile
+from core.models import UserProfile, Address, HospitalProfile
 
 
 def user_registration(request):
@@ -14,11 +14,16 @@ def user_registration(request):
 
 		data = request.POST
 		# Validate password and return error
-		if data['password'] != data['confirm_password']:
-			messages.error(request, "Passwords didn't match")
-			return render(request, 'user_reg.html')
+		if not request.user.is_authenticated:
+			if data['password'] != data['confirm_password']:
+				messages.error(request, "Passwords didn't match")
+				return render(request, 'user_reg.html')
 
-		user_obj = User()
+		user_obj = None
+		if request.user.is_authenticated:
+			user_obj = User.objects.get(id=request.user.id)
+		else:
+			user_obj = User()
 		user_obj.email = data['email']
 		user_obj.first_name = data['first_name']
 		user_obj.last_name = data['last_name']
@@ -26,11 +31,16 @@ def user_registration(request):
 		if user_obj.last_name:
 			username = username + user_obj.last_name
 		user_obj.username = username.lower()
-		user_obj.set_password(data['password'])
+		if not request.user.is_authenticated:
+			user_obj.set_password(data['password'])
 		user_obj.save()
 
-		user_profile = UserProfile()
-		user_profile.user = user_obj
+		user_profile = None
+		if request.user.is_authenticated:
+			user_profile = UserProfile.objects.get(user=request.user)
+		else:
+			user_profile = UserProfile()
+			user_profile.user = user_obj
 		user_profile.gender = data['gender']
 		user_profile.dob = data['dob']
 		user_profile.mobile_number = int(data['mobile'])
@@ -46,6 +56,9 @@ def user_registration(request):
 		user_profile.address = address_obj
 		user_profile.save()
 
+		if request.user.is_authenticated:
+			messages.success(request, "User Updated.")
+			return redirect('view_profile')
 		messages.success(request, "User successfully created.")
 
 	return render(request, 'user_reg.html')
@@ -121,8 +134,47 @@ def hospital_registration(request):
 		hos_profile.save()
 		messages.success(request, "Hospital Registration successfully completed")
  	return render(request, 'hospital_reg.html')
+
+
 def view_profile(request):
-	
-	return render(request, 'view_profile.html')
+	if request.user.is_authenticated.value == True:
+		context = {}
+		user_obj = User.objects.get(id=request.user.id)
+		userprofile = user_obj.userprofile
+		address = Address.objects.get(id=user_obj.userprofile.address_id)
+		context["gender"] = user_obj.userprofile.gender
+		context["dateOfBirth"] = user_obj.userprofile.dob
+		context["bloodGroup"] = user_obj.userprofile.blood_group
+		context["mobileNumber"] = user_obj.userprofile.mobile_number
+		context["alternateNumber"] = user_obj.userprofile.alternate_number
+		context["address"] = address
+		return render(request, 'view_profile.html', context)
+	else:
+		return redirect('/')
+
+
 def edit_profile(request):
-	return render(request, 'edit_profile.html')
+	if request.user.is_authenticated.value == True:
+		context = {}
+		user_obj = User.objects.get(id=request.user.id)
+		userprofile = user_obj.userprofile
+		address = Address.objects.get(id=user_obj.userprofile.address_id)
+		context["gender"] = user_obj.userprofile.gender
+		day = str(user_obj.userprofile.dob.day)
+		month = str(user_obj.userprofile.dob.month)
+		year = str(user_obj.userprofile.dob.year)
+		if len(str(user_obj.userprofile.dob.day)) == 1:
+			day = "0"+ day
+		if len(str(user_obj.userprofile.dob.month)) == 1:
+			month = "0"+ month
+		if len(str(user_obj.userprofile.dob.year)) == 1:
+			year = "0"+ year
+		context["dateOfBirth"] = "{}-{}-{}".format(year, month, day)
+		context["bloodGroup"] = user_obj.userprofile.blood_group
+		context["mobileNumber"] = user_obj.userprofile.mobile_number
+		context["alternateNumber"] = user_obj.userprofile.alternate_number
+		context["address"] = address
+		print context["dateOfBirth"]
+		return render(request, 'edit_profile.html', context)
+	else:
+		return redirect('/')

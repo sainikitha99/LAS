@@ -7,7 +7,9 @@ html, body {
     right:0;
 }
 
-.container-fluid {padding: 0px;}
+.container-fluid {
+  padding: 0px;
+}
 
 .container{
     display: table;

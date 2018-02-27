@@ -42,7 +42,7 @@ class Address(models.Model):
 	country = models.CharField(max_length=255, blank=True, null=True)
 
 	def __unicode__(self):
-		return "%s - %s - %s" % (self.address1. self.city, self.country)
+		return "%s - %s - %s" % (self.address1, self.city, self.country)
 
 
 class UserProfile(models.Model):
