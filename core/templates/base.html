@@ -28,13 +28,13 @@
               <li class="las-logo"><img src="{% static 'images/logo.png' %}"></li>
             </ul>
           </div>
-          
+
           {% if request.user.is_authenticated %}<div class="col-md-7 las-header"> {% else %}<div class="col-md-8 las-header">{% endif %}
             <ul class="nav navbar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="{% url 'about' %}">About</a></li>
+              <li><a href="{% url 'overview' %}">Overview</a></li>
+              <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
           </div>
 

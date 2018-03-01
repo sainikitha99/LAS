@@ -138,17 +138,20 @@ def hospital_registration(request):
 
 def view_profile(request):
 	if request.user.is_authenticated.value == True:
-		context = {}
-		user_obj = User.objects.get(id=request.user.id)
-		userprofile = user_obj.userprofile
-		address = Address.objects.get(id=user_obj.userprofile.address_id)
-		context["gender"] = user_obj.userprofile.gender
-		context["dateOfBirth"] = user_obj.userprofile.dob
-		context["bloodGroup"] = user_obj.userprofile.blood_group
-		context["mobileNumber"] = user_obj.userprofile.mobile_number
-		context["alternateNumber"] = user_obj.userprofile.alternate_number
-		context["address"] = address
-		return render(request, 'view_profile.html', context)
+		try:
+			context = {}
+			user_obj = User.objects.get(id=request.user.id)
+			userprofile = user_obj.userprofile
+			address = Address.objects.get(id=user_obj.userprofile.address_id)
+			context["gender"] = user_obj.userprofile.gender
+			context["dateOfBirth"] = user_obj.userprofile.dob
+			context["bloodGroup"] = user_obj.userprofile.blood_group
+			context["mobileNumber"] = user_obj.userprofile.mobile_number
+			context["alternateNumber"] = user_obj.userprofile.alternate_number
+			context["address"] = address
+			return render(request, 'view_profile.html', context)
+		except:
+			return render(request, 'edit_profile.html')
 	else:
 		return redirect('/')
 
