@@ -3,7 +3,7 @@
 
 {% block content_body %}
 
-<h1 align="center">Edit Profile</h2>
+<h1 align="center">{% if google_auth %} Create Profile {% else %}Edit Profile {% endif %}</h2>
 <form action="{% url 'user_registration' %}" method="post">{% csrf_token %}
   <div class="form-group">
     <label for="first_name">First Name</label>

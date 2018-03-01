@@ -37,7 +37,8 @@ def user_registration(request):
 
 		user_profile = None
 		if request.user.is_authenticated:
-			user_profile = UserProfile.objects.get(user=request.user)
+			# get_or_create is used while creating profile when user logged in via Google.
+			user_profile, created = UserProfile.objects.get_or_create(user=request.user)
 		else:
 			user_profile = UserProfile()
 			user_profile.user = user_obj
@@ -141,7 +142,11 @@ def view_profile(request):
 		try:
 			context = {}
 			user_obj = User.objects.get(id=request.user.id)
-			userprofile = user_obj.userprofile
+			try:
+				userprofile = user_obj.userprofile
+			except:
+				context['google_auth'] = True
+				return render(request, 'edit_profile.html', context)
 			address = Address.objects.get(id=user_obj.userprofile.address_id)
 			context["gender"] = user_obj.userprofile.gender
 			context["dateOfBirth"] = user_obj.userprofile.dob
@@ -160,7 +165,11 @@ def edit_profile(request):
 	if request.user.is_authenticated.value == True:
 		context = {}
 		user_obj = User.objects.get(id=request.user.id)
-		userprofile = user_obj.userprofile
+		try:
+			userprofile = user_obj.userprofile
+		except:
+			context['google_auth'] = True
+			return render(request, 'edit_profile.html', context)
 		address = Address.objects.get(id=user_obj.userprofile.address_id)
 		context["gender"] = user_obj.userprofile.gender
 		day = str(user_obj.userprofile.dob.day)

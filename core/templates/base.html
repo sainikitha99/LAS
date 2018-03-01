@@ -39,9 +39,9 @@
           </div>
 
           {% if request.user.is_authenticated %}
-            <div class="col-md-1 las-header">
+            <div class="col-md-1 las-header" style="padding: 15px;">
               <ul class="nav navbar-nav">
-                <li class="logged_user"> {{ request.user.username }} </li>
+                <li class="logged_user"> {{ request.user.first_name }} </li>
               </ul>
             </div>
             <div class="col-md-1 las-header" style="left: 35px;">
@@ -87,7 +87,7 @@
     </div>
 
     <div class="container">
-      {% block content_body %}{% endblock %}
+      {% block content_body %}<h1>Home Page</h1>{% endblock %}
       <div class="container-fluid">
         <div class="footer navbar-fixed-bottom las-footer">
           <h4>&copy; LAS 2018, All Rights Reserved.</h4>
@@ -153,11 +153,11 @@
               <form action="{% url 'login' %}" method="post"> {% csrf_token %}
                 <div class="form-group">
                   <label for="usr"><h3>Hospital Id</h3></label>
-                  <input type="text" class="form-control" id="text" placeholder="Enter your Registration Id" name="hos_reg_id">
+                  <input type="text" class="form-control" id="text" placeholder="Enter your Registration Id" name="hos_reg_id" required>
                 </div>
                 <div class="form-group">
                   <label for="pwd"><h3>Password</h3></label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
                 </div>
                 <center>
                   <button type="submit" class="btn btn-default">Login</button>
