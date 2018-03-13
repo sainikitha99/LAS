@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load  static %}
+
+
+{% block content_body %}
+
+<div class="navbar navbar-inverse navbar-fixed-left">
+  <ul class="nav navbar-nav">
+   <li><a href="{% url 'user_request' %}">REQUEST HELP</a></li>
+   <li><a href="{% url 'my_requests' %}">MY REQUESTS</a></li>
+   <li><a href="{% url 'give_feedback' %}">GIVE FEEDBACK</a></li>
+  </ul>
+</div>
+<div class="container">
+ <div class="row">
+   <h2 align ="center">HI,SAI NIKHITHA !!!</h2>
+
+
+ </div>
+</div>
+{% endblock %}

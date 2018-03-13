@@ -8,6 +8,19 @@ GENDER_CHOICES = (
 	('male', 'Male'),
 	('female', 'Female')
 )
+SEVERITY_CHOICES = (
+	('minor','Minor'),
+	('major','Major'),
+	('critical','Critical')
+)
+
+STATUS_CHOICES=(
+('pending','Pending'),
+('accepted','Accepted'),
+('progress','Progress'),
+('completed','Completed')
+)
+
 
 BLOOD_GROUP_CHOICES = (
 	('apositive', 'A+'),
@@ -26,8 +39,9 @@ class UserRequest(models.Model):
 	location = models.CharField(max_length=255, blank=True, null=True)
 	mobile = models.IntegerField(default=0)
 	reason = models.TextField(blank=True, null=True)
-	severity = models.CharField(max_length=255, blank=True, null=True)
-
+	severity = models.CharField(max_length=255, blank=True, null=True, choices=SEVERITY_CHOICES)
+ 	count_of_persons_injured = models.IntegerField(default=1)
+	status = models.CharField(max_length=255, blank=True, null=True, choices=STATUS_CHOICES)
 	def __unicode__(self):
 		return "%s - %s" % (self.location, self.mobile)
 

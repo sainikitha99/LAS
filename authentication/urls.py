@@ -10,4 +10,6 @@ AUTH_URLS = [
 	url(r'^social_auth/', include('social_django.urls', namespace='social')),
 	url(r'^user/profile/', view_profile, name='view_profile'),
 	url(r'^userprofile/edit/', edit_profile, name='edit_profile'),
+	url(r'^user/reset_password', reset_password, name='reset_password'),
+
 ]

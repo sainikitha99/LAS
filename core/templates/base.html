@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/view_profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
 
     <script type="text/javascript" src="{% static 'js/user_reg.js' %}"></script>
 
@@ -35,6 +37,9 @@
               <li><a href="{% url 'about' %}">About</a></li>
               <li><a href="{% url 'overview' %}">Overview</a></li>
               <li><a href="{% url 'contact' %}">Contact</a></li>
+              {% if request.user.is_authenticated %}
+              <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+              {% endif %}
             </ul>
           </div>
 
@@ -128,6 +133,10 @@
                     -OR-
                     <a class="btn btn-default" href="{% url 'social:begin' 'google-oauth2' %}">Sign In Using Google</a><br>
                   </center>
+                </br>
+              </br>
+                  <a href="{% url 'reset_password' %}">Forgot password??</a>
+
                 </form>
 
             </div><br>

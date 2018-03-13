@@ -190,3 +190,5 @@ def edit_profile(request):
 		return render(request, 'edit_profile.html', context)
 	else:
 		return redirect('/')
+def reset_password(request):
+	return render(request, 'reset_password.html')

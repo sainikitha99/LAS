@@ -28,5 +28,12 @@ urlpatterns = [
     url(r'^about/',about, name='about'),
     url(r'^overview/',overview, name='overview'),
     url(r'^contact/',contact, name='contact'),
+    url(r'^dashboard/',dashboard, name='dashboard'),
+    url(r'^requesth/',requesth, name='requesth'),
+    url(r'^feedback/',feedback, name='feedback'),
+    url(r'^notifications/',notifications, name='notifications'),
 
+    url(r'^user_request/',user_request, name='user_request'),
+    url(r'^my_requests/',my_requests, name='my_requests'),
+    url(r'^give_feedback/',give_feedback, name='give_feedback'),
 ]

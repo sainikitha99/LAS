@@ -20,3 +20,19 @@ def contact(request):
 	return render(request, 'contact.html')
 def about(request):
 	return render(request, 'about.html')
+def dashboard(request):
+	return render(request, 'dashboard.html')
+def requesth(request):
+	return render(request, 'request.html')
+def notifications(request):
+	return render(request, 'notifications.html')
+def feedback(request):
+	return render(request, 'feedback.html')
+def userdashboard(request):
+	return render(request, 'userdashboard.html')
+def user_request(request):
+	return render(request, 'user_request.html')
+def my_requests(request):
+	return render(request, 'my_requests.html')
+def give_feedback(request):
+	return render(request, 'give_feedback.html')

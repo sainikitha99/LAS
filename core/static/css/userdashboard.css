@@ -1,0 +1,33 @@
+.navbar-fixed-left {
+  width: 200px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  /* Cancel default li float: left */
+  width: 139px;
+}
+.navbar-fixed-left + .container {
+  padding-left: 160px;
+}
+.navbar-inverse {
+    background-color: teal;
+    border-color: #080808;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: black;
+
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 21px 25px;
+    padding-top: 100px;
+    font-size: 20px;
+  }

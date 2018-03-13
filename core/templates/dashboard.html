@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load  static %}
+
+
+{% block content_body %}
+<div>
+  <ul class="nav navbar-nav-fixed-left">
+  <table>
+
+   <tr><li><a href="{% url 'requesth' %}">REQUEST</a></li></tr>
+   <tr><li><a href="{% url 'notifications' %}">NOTIFICATONS</a></li></tr>
+   <tr><li><a href="{% url 'feedback' %}">FEEDBACK</a></li></tr>
+ </table>
+  </ul>
+</div>
+<div class="container">
+   <h2>SRI SRI HOLISTIC HOSPITAL</h2>
+
+</div>
+{% endblock %}
