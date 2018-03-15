@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
-from core.models import UserProfile, Address, HospitalProfile
+from core.models import UserProfile, Address
 
 
 def user_registration(request):
@@ -73,7 +73,7 @@ def login_view(request):
 		user_q = []
 		if "hos_reg_id" in request.POST:
 			hos_reg_id = request.POST['hos_reg_id']
-			hospitalprofile = HospitalProfile.objects.filter(hos_reg_id=hos_reg_id).first()
+			hospitalprofile = UserProfile.objects.filter(hos_reg_id=hos_reg_id).first()
 			user_q = User.objects.filter(id=hospitalprofile.user.id)
 		else:
 			email = request.POST['email']
@@ -119,12 +119,13 @@ def hospital_registration(request):
 		usr_obj.set_password(data['password'])
 		usr_obj.save()
 
-		hos_profile = HospitalProfile()
+		hos_profile = UserProfile()
 		hos_profile.user = usr_obj
 		hos_profile.hos_reg_id = data['hos_reg_id']
 		hos_profile.hos_reg_date = data['hos_reg_date']
 		hos_profile.hos_dir_name = data['hos_dir_name']
 		hos_profile.ambulance_count = data['ambulance_count']
+		hos_profile.is_hospital = True
 
 		address_obj = Address(address1=data['address_1'], city=data['city'], state=data['state'], pincode=data['pincode'], country=data['country'])
 		if "address_2" in data and data['address_2'] != "" and data['address_2'] is not None:
@@ -190,5 +191,7 @@ def edit_profile(request):
 		return render(request, 'edit_profile.html', context)
 	else:
 		return redirect('/')
+
+
 def reset_password(request):
 	return render(request, 'reset_password.html')

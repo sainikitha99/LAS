@@ -2,12 +2,11 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from core.models import HospitalProfile
+from core.models import UserRequest
 
 # Register your models HERE
-class HospitalProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'hos_reg_id', 'ambulance_count')
+class UserRequestAdmin(admin.ModelAdmin):
+	class Meta:
+		model = UserRequest
 
-
-
-admin.site.register(HospitalProfile, HospitalProfileAdmin)
+admin.site.register(UserRequest, UserRequestAdmin)

@@ -27,18 +27,17 @@
         <div class="row">
           <div class="col-md-2">
           <ul class="nav navbar-nav">
-              <li class="las-logo"><img src="{% static 'images/logo.png' %}"></li>
+              <li class="las-logo"><a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"></a></li>
             </ul>
           </div>
 
           {% if request.user.is_authenticated %}<div class="col-md-7 las-header"> {% else %}<div class="col-md-8 las-header">{% endif %}
             <ul class="nav navbar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="{% url 'about' %}">About</a></li>
-              <li><a href="{% url 'overview' %}">Overview</a></li>
-              <li><a href="{% url 'contact' %}">Contact</a></li>
-              {% if request.user.is_authenticated %}
-              <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+              {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'overview' %}">Overview</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
               {% endif %}
             </ul>
           </div>
