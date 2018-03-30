@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from core.models import UserRequest,Address
+from django.contrib import messages
+
 
 
 def index(request):
@@ -52,6 +55,22 @@ def user_dashboard(request):
 
 
 def raise_request(request):
+	if request.POST is not None and request.POST != {}:
+
+		data = request.POST
+		print data
+		request_obj = UserRequest()
+		request_obj.name = data['user_name']
+		request_obj.mobile_number = int(data['mobile'])
+		address_obj = Address(address1=data['address_1'], city=data['city'], state=data['state'], pincode=data['pincode'], country=data['country'])
+
+		address_obj.save()
+		request_obj.address = address_obj
+		request_obj.inj_count = data['injured_count']
+		request_obj.severity = data['severity']
+		request_obj.status = data['status']
+		request_obj.save()
+		messages.success(request, "User Request Updated.")
 	return render(request, 'user_dashboard/raise_request.html')
 
 
@@ -61,3 +80,6 @@ def user_requests(request):
 
 def user_feedback(request):
 	return render(request, 'user_dashboard/feedback.html')
+
+def requests_list(request):
+	return render(request, 'hospital_dashboard/requests_list.html')

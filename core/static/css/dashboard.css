@@ -27,3 +27,17 @@
     color: black;
 
 }
+.navbar-fixed-left .navbar-nav > li >a {
+  /* Cancel default li float: left */
+  width: 200px;
+  padding-left: 50px;
+  padding-top: 100px;
+}
+.navbar-fixed-left {
+    width: 200px;
+    position: fixed;
+    border-radius: 0;
+    height: 80%;
+    margin-right: 1000px;
+    margin-inline-start: -436px;
+}

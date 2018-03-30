@@ -7,7 +7,7 @@ CORE_URLS = [
 	url(r'^about/',about, name='about'),
     url(r'^overview/',overview, name='overview'),
     url(r'^contact/',contact, name='contact'),
-    
+
     url(r'^hospital/dashboard/',hospital_dashboard, name='hospital_dashboard'),
     url(r'^hospital/requests/',hospital_requests, name='hospital_requests'),
     url(r'^hospital/feedback/',hospital_feedback, name='hospital_feedback'),
@@ -17,5 +17,8 @@ CORE_URLS = [
     url(r'^user/requests/',user_requests, name='user_requests'),
     url(r'^user/raiserequest/',raise_request, name='raise_request'),
     url(r'^user/feedback/',user_feedback, name='user_feedback'),
+
+	url(r'^hospital/requests/requests_list/',requests_list, name='requests_list'),
+
 
 ]

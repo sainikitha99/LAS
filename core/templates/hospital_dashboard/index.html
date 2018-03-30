@@ -1,20 +1,22 @@
 {% extends "base.html" %}
+
 {% load  static %}
 
 
 {% block content_body %}
-<div>
-  <ul class="nav navbar-nav-fixed-left">
-  <table>
 
-   <tr><li><a href="{% url 'hospital_requests' %}">REQUEST</a></li></tr>
-   <tr><li><a href="{% url 'hospital_notifications' %}">NOTIFICATONS</a></li></tr>
-   <tr><li><a href="{% url 'hospital_feedback' %}">FEEDBACK</a></li></tr>
- </table>
+<div class="navbar navbar-inverse navbar-fixed-left">
+  <table align="margin-left">
+  <ul class="nav navbar-nav">
+   <li><a href="{% url 'hospital_requests' %}">REQUEST</a></li>
+   <li><a href="{% url 'hospital_notifications' %}">NOTIFICATIONS</a></li>
+   <li><a href="{% url 'hospital_feedback' %}">FEEDBACK</a></li>
   </ul>
+</table>
 </div>
 <div class="container">
-   <h2>SRI SRI HOLISTIC HOSPITAL</h2>
-
+ <div class="row">
+   <h2 align ="center">Sri Sai Hospital !!!</h2>
+ </div>
 </div>
 {% endblock %}
