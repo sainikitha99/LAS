@@ -55,23 +55,30 @@ def user_dashboard(request):
 
 
 def raise_request(request):
+	context = {}
+	if request.user.is_authenticated:
+		context["username"] = request.user.first_name
+		context["mobile_number"] = request.user.userprofile.mobile_number
 	if request.POST is not None and request.POST != {}:
 
 		data = request.POST
-		print data
 		request_obj = UserRequest()
-		request_obj.name = data['user_name']
-		request_obj.mobile_number = int(data['mobile'])
-		address_obj = Address(address1=data['address_1'], city=data['city'], state=data['state'], pincode=data['pincode'], country=data['country'])
+		if request.user.is_authenticated:
+			request_obj.user = request.user
+			if request.user.userprofile.mobile_number != int(data['mobile']):
+				request_obj.mobile = int(data['mobile'])
+			else:
+				request_obj.mobile = request.user.userprofile.mobile_number
+		else:
+			request_obj.anonymous_user = data['user_name']
+			request_obj.mobile = int(data['mobile'])
 
-		address_obj.save()
-		request_obj.address = address_obj
-		request_obj.inj_count = data['injured_count']
-		request_obj.severity = data['severity']
-		request_obj.status = data['status']
+		request_obj.count_of_persons_injured = data['injured_count']
+		request_obj.severity = data['severity'].lower()
+		request_obj.status = data['status'].lower()
 		request_obj.save()
 		messages.success(request, "User Request Updated.")
-	return render(request, 'user_dashboard/raise_request.html')
+	return render(request, 'user_dashboard/raise_request.html', context)
 
 
 def user_requests(request):

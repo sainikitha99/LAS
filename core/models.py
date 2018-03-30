@@ -35,15 +35,16 @@ BLOOD_GROUP_CHOICES = (
 
 
 class UserRequest(models.Model):
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User, blank=True, null=True)
+	anonymous_user = models.CharField(max_length=255, blank=True, null=True)
 	location = models.CharField(max_length=255, blank=True, null=True)
-	mobile = models.IntegerField(default=0)
+	mobile = models.BigIntegerField(default=0)
 	reason = models.TextField(blank=True, null=True)
 	severity = models.CharField(max_length=255, blank=True, null=True, choices=SEVERITY_CHOICES)
  	count_of_persons_injured = models.IntegerField(default=1)
 	status = models.CharField(max_length=255, blank=True, null=True, choices=STATUS_CHOICES)
 	def __unicode__(self):
-		return "%s - %s" % (self.location, self.mobile)
+		return "%s - %s - %s" % (self.user, self.anonymous_user, self.mobile)
 
 
 class Address(models.Model):

@@ -123,11 +123,11 @@
                 <form action="{% url 'login' %}" method="post"> {% csrf_token %}
                   <div class="form-group">
                     <label for="usr"><h3>Email:</h3></label>
-                    <input type="text" class="form-control" id="text" placeholder="Email" name="email" required>
+                    <input type="text" class="form-control" id="user_email" placeholder="Email" name="email" required>
                   </div>
                   <div class="form-group">
-                    <label for="pwd"><h3>Password:</h3></label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
+                    <label for="user_password"><h3>Password:</h3></label>
+                    <input type="password" class="form-control" id="user_password" placeholder="Enter password" name="password" required>
                   </div>
                   <center>
                     <button type="submit" class="btn btn-default forn-control">Sign In</button>
@@ -162,12 +162,12 @@
             <div class="container">
               <form action="{% url 'login' %}" method="post"> {% csrf_token %}
                 <div class="form-group">
-                  <label for="usr"><h3>Hospital Id</h3></label>
-                  <input type="text" class="form-control" id="text" placeholder="Enter your Registration Id" name="hos_reg_id" required>
+                  <label for="hosp_id"><h3>Hospital Id</h3></label>
+                  <input type="text" class="form-control" id="hosp_id" placeholder="Enter your Registration Id" name="hos_reg_id" required>
                 </div>
                 <div class="form-group">
-                  <label for="pwd"><h3>Password</h3></label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
+                  <label for="hosp_password"><h3>Password</h3></label>
+                  <input type="password" class="form-control" id="hosp_password" placeholder="Enter password" name="password" required>
                 </div>
                 <center>
                   <button type="submit" class="btn btn-default">Login</button>
