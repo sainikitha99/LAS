@@ -76,6 +76,8 @@ def raise_request(request):
 		request_obj.count_of_persons_injured = data['injured_count']
 		request_obj.severity = data['severity'].lower()
 		request_obj.status = data['status'].lower()
+		request_obj.latitude = data["latitude"]
+		request_obj.longitude = data["longitude"]
 		request_obj.save()
 		messages.success(request, "User Request Updated.")
 	return render(request, 'user_dashboard/raise_request.html', context)

@@ -37,7 +37,8 @@ BLOOD_GROUP_CHOICES = (
 class UserRequest(models.Model):
 	user = models.ForeignKey(User, blank=True, null=True)
 	anonymous_user = models.CharField(max_length=255, blank=True, null=True)
-	location = models.CharField(max_length=255, blank=True, null=True)
+	latitude = models.CharField(max_length=255, blank=True, null=True)
+	longitude = models.CharField(max_length=255, blank=True, null=True)
 	mobile = models.BigIntegerField(default=0)
 	reason = models.TextField(blank=True, null=True)
 	severity = models.CharField(max_length=255, blank=True, null=True, choices=SEVERITY_CHOICES)

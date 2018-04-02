@@ -20,11 +20,15 @@
     <!-- JS IMPORTS -->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/load_map.js' %}"></script>
+    <script async defer
+   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvtcqJOV0KY-08Ot_-ghGG_VPyXg2LSjU&callback=initMap">
+   </script>
 
 
   </head>
   <body>
-    <div class="container-fluid">
+
     <nav class="navbar navbar-default navbar-custom">
         <div class="row">
           <div class="col-md-2">
@@ -90,15 +94,12 @@
           {% endif %}
         </div>
     </nav>
-    </div>
 
     <div class="container">
       {% block content_body %}<h1>Home Page</h1>{% endblock %}
-      <div class="container-fluid">
-        <div class="footer navbar-fixed-bottom las-footer">
-          <h4>&copy; LAS 2018, All Rights Reserved.</h4>
-        </div>
-      </div>
+    </div>
+    <div class="footer navbar-fixed-bottom las-footer">
+      <h4>&copy; LAS 2018, All Rights Reserved.</h4>
     </div>
 
     <div class="container">
