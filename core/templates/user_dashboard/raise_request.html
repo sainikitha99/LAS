@@ -2,42 +2,53 @@
 
 	{% include "user_dashboard/index.html" %}
 
-	<form action="{% url 'raise_request' %}" method="post">{% csrf_token %}
-		<div class="form-group">
-			<label for="user_name">*Name</label>
-			<input type="text" class="form-control" id="user_name" placeholder="Enter your Name" name="user_name" value="{{ username }}" required>
-		</div>
-		<div class="form-group">
-			<label for="mobile">Mobile Number</label>
-			<input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile" value="{{ mobile_number }}">
-		</div>
-		<div class="form-group">
-			<label for="severity">*Severity</label>
-			<select class="form-control" id="severity" name="severity" required>
-			<option>Minor</option>
-			<option>Major</option>
-			<option>Critical</option>
-		  </select>
-		</div>
-		<div id="map"></div>
-		<div class="form-group">
-			<label for="injured_count">*Number of persons injured</label>
-			<input type="number" class="form-control" id="injured_count" min="1" placeholder="Enter the count of injured persons" name="injured_count" required>
-		</div>
-		<div class="form-group">
-	      <label for="status">Status:</label>
-	      <select class="form-control" id="status" name="status" required>
-	        <option>Pending</option>
-					<option>Accepted</option>
-					<option>Progress</option>
-					<option>Completed</option>
-	      </select>
-		</div>
-		<input type="hidden" id="latitude" name="latitude">
-		<input type="hidden" id="longitude" name="longitude">
-	 <div align="center">
-	 	<button type="submit" class="btn btn-default" style="margin-left;">Submit</button>
-   	<button type="reset" class="btn btn-default" style="margin-left;">Reset</button>
+  <table>
+    <tr>
+      <td>
+  <form method="post">
+    <div class="form-group">
+      <label for="user_name">*Name</label>
+      <input type="text" class="form-control" id="user_name" placeholder="Enter your Name" name="user_name" value="{{ username }}" required>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile Number</label>
+      <input type="mobile" class="form-control" id="mobile" placeholder="Enter mobile number" name="mobile" value="{{ mobile_number }}">
+    </div>
+    <div class="form-group">
+      <label for="severity">*Severity</label>
+      <select class="form-control" id="severity" name="severity" required>
+      <option>Minor</option>
+      <option>Major</option>
+      <option>Critical</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="injured_count">*Number of persons injured</label>
+      <input type="number" class="form-control" id="injured_count" min="1" placeholder="Enter the count of injured persons" name="injured_count" required>
+    </div>
+    <div class="form-group">
+        <label for="status">Status:</label>
+        <select class="form-control" id="status" name="status" required>
+          <option>Pending</option>
+          <option>Accepted</option>
+          <option>Progress</option>
+          <option>Completed</option>
+        </select>
+    </div>
+  </td>
+    <td>
+    <div id="map" style="position: absolute; overflow:None; height:30%; width:25%;"></div>
+  </td>
+  </tr>
+</table>
+<input type="hidden" id="latitude" name="latitude">
+<input type="hidden" id="longitude" name="longitude">
+
+   <div align="center">
+    <button type="submit" class="btn btn-default" style="margin-left;">Submit</button>
+    <button type="reset" class="btn btn-default" style="margin-left;">Reset</button>
   </div>
   </form>
+
+
 {% endblock %}
