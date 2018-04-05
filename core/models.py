@@ -73,6 +73,8 @@ class UserProfile(models.Model):
  	hos_reg_date = models.DateField(blank=True, null=True)
 	ambulance_count = models.IntegerField(default=0)
 	address = models.ForeignKey(Address, blank=True, null=True)
+	latitude = models.CharField(max_length=255, blank=True, null=True)
+	longitude = models.CharField(max_length=255, blank=True, null=True)
 	is_hospital = models.BooleanField(default=False)
 
 	def __unicode__(self):

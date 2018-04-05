@@ -9,6 +9,9 @@
 		</ul>
 	{% endif %}
   <h1 align="center">Hospital Registration</h2>
+    <table>
+      <tr>
+        <td>
   <form action="{% url 'hospital_registration' %}" method="post">{% csrf_token %}
 		<div class="form-group">
 
@@ -60,9 +63,19 @@
 		 <label for="confirm_password">Confirm Password</label>
 		 <input type="password" class="form-control" id="confirm_password" placeholder="Enter password again" name="confirm_password">
 	 </div>
+ </td>
+ <td>
+   <div id="map" style="position: absolute; overflow:None; height:30%; width:25%;"></div>
+</td>
+</tr>
+</table>
+<input type="button" value="Get Address" onclick="GetAddress()" />
+
 	 <div align="center">
 	 	<button type="submit" class="btn btn-default" style="margin-left;">Submit</button>
    	<button type="reset" class="btn btn-default" style="margin-left;">Reset</button>
   </div>
+  <input type="hidden" id="latitude" name="latitude">
+	<input type="hidden" id="longitude" name="longitude">
   </form>
 {% endblock %}
