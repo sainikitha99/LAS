@@ -89,9 +89,9 @@ WSGI_APPLICATION = 'las.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'las1', # database_name
-        'USER': 'las11', # database_user
-        'PASSWORD': 'laspass', # password
+        'NAME': 'las', # database_name
+        'USER': 'las', # database_user
+        'PASSWORD': 'las1pass', # password
         'HOST': 'localhost', # host
         'PORT': '5432' # default port for postgres.
     }
