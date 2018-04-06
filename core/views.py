@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from core.models import UserRequest,Address
+from core.models import UserRequest
 from django.contrib import messages
 
 

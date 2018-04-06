@@ -21,6 +21,7 @@
        };
        $("#latitude").val(pos.lat);
        $("#longitude").val(pos.lng);
+       GetAddress();
        var marker = new google.maps.Marker({
        position: pos,
        map: map,
@@ -32,6 +33,7 @@
       google.maps.event.addListener(marker, 'drag', function(event){
         $("#latitude").val(event.latLng.lat());
         $("#longitude").val(event.latLng.lng());
+        GetAddress();
       });
        infoWindow.open(map);
        map.setCenter(pos);
@@ -52,16 +54,14 @@
    infoWindow.open(map);
  }
 
-     function GetAddress() {
-         var lat = parseFloat(document.getElementById("latitude").value);
-         var lng = parseFloat(document.getElementById("longitude").value);
-         var latlng = new google.maps.LatLng(lat, lng);
-         var geocoder = geocoder = new google.maps.Geocoder();
-         geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-             if (status == google.maps.GeocoderStatus.OK) {
-                 if (results[1]) {
-                     alert("Location: " + results[0].formatted_address);
-                 }
-             }
-         });
-     }
+ function GetAddress() {
+     var latlng = new google.maps.LatLng($("#latitude").val(), $("#longitude").val());
+     var geocoder = new google.maps.Geocoder();
+     geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+          $("#formatted_address").val(results[0].formatted_address);
+        }
+      }
+     })
+  }

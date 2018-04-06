@@ -48,19 +48,6 @@ class UserRequest(models.Model):
 		return "%s - %s - %s" % (self.user, self.anonymous_user, self.mobile)
 
 
-class Address(models.Model):
-	address1 = models.CharField(max_length=255, blank=True, null=True)
-	address2 = models.CharField(max_length=255, blank=True, null=True)
-	landmark = models.CharField(max_length=255, blank=True, null=True)
-	city = models.CharField(max_length=255, blank=True, null=True)
-	state = models.CharField(max_length=255, blank=True, null=True)
-	pincode = models.IntegerField(default=0)
-	country = models.CharField(max_length=255, blank=True, null=True)
-
-	def __unicode__(self):
-		return "%s - %s - %s" % (self.address1, self.city, self.country)
-
-
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 	dob = models.DateField(blank=True, null=True)
@@ -72,7 +59,7 @@ class UserProfile(models.Model):
 	hos_dir_name = models.CharField(max_length=255, blank=True, null=True)
  	hos_reg_date = models.DateField(blank=True, null=True)
 	ambulance_count = models.IntegerField(default=0)
-	address = models.ForeignKey(Address, blank=True, null=True)
+	address = models.TextField(blank=True, null=True)
 	latitude = models.CharField(max_length=255, blank=True, null=True)
 	longitude = models.CharField(max_length=255, blank=True, null=True)
 	is_hospital = models.BooleanField(default=False)
