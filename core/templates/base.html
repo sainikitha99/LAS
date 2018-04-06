@@ -54,7 +54,9 @@
             </div>
             <div class="col-md-1 las-header" style="left: 35px;">
               <ul class="nav navbar-nav">
-                <a href="{% url 'view_profile' %}" class="btn btn-primary btn-md" style="margin-left:-13px;">view profile</a>
+                {% if request.user.is_authenticated and not request.user.userprofile.is_hospital %}
+                  <a href="{% url 'view_profile' %}" class="btn btn-primary btn-md" style="margin-left:-13px;">view profile</a>
+                {% endif %}
               </ul>
             </div>
             <div class="col-md-1 las-header">
@@ -135,7 +137,7 @@
                   </center>
                 </br>
               </br>
-                  <a href="{% url 'reset_password' %}">Forgot password??</a>
+                  <a href="{% url 'reset_password' %}?is_user=true">Forgot password?</a>
 
                 </form>
 
@@ -170,7 +172,8 @@
                 </div>
                 <center>
                   <button type="submit" class="btn btn-default">Login</button>
-                </center>
+                </center><br><br>
+                <a href="{% url 'reset_password' %}?is_hospital=true">Forgot password?</a>
               </form>
           </div>
           <div class="modal-footer">

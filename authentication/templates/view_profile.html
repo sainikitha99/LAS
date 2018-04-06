@@ -47,29 +47,7 @@
       </tr>
       <tr>
         <td class='h'>Address</td>
-        <td><textarea rows="4" cols="15">{{ address.address1 }}</textarea></td>
-      </tr>
-      {% if address.landmark %}
-        <tr>
-          <td class='h'>Landmark</td>
-          <td>{{ address.landmark }}</td>
-        </tr>  
-      {% endif %}
-      <tr>
-        <td class='h'>City</td>
-        <td>{{ address.city }}</td>
-      </tr>
-      <tr>
-        <td class='h'>State</td>
-        <td>{{ address.state }}</td>
-      </tr>
-      <tr>
-        <td class='h'>Pincode</td>
-        <td>{{ address.pincode }}</td>
-      </tr>
-      <tr>
-        <td class='h'>Country</td>
-        <td>{{ address.country }}</td>
+        <td><textarea rows="4" cols="15">{{ request.user.userprofile.address }}</textarea></td>
       </tr>
     </table>
 

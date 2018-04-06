@@ -175,11 +175,26 @@ def edit_profile(request):
 		context["mobileNumber"] = user_obj.userprofile.mobile_number
 		context["alternateNumber"] = user_obj.userprofile.alternate_number
 		context["address"] = user_obj.user_profile.address
-		print context["dateOfBirth"]
 		return render(request, 'edit_profile.html', context)
 	else:
 		return redirect('/')
 
 
 def reset_password(request):
+	if request.POST is not None and request.POST !={}:
+		data = request.POST
+		if "hosp_id" in data:
+			userprofile = UserProfile.objects.get(hos_reg_id=data["hosp_id"])
+			user = userprofile.user
+			user.set_password(data["new_password"])
+			user.save()
+		else:
+			user = User.objects.get(email=data["user_email"])
+			user.set_password(data["new_password"])
+			user.save()
+			messages.success(request, "Password Reset successfully")
+	if "is_user" in request.GET:
+		return render(request, 'reset_password.html', {"is_user": True})
+	elif "is_hospital" in request.GET:
+		return render(request, 'reset_password.html', {"is_hospital": True})
 	return render(request, 'reset_password.html')
