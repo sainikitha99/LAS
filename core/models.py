@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.gis.db import models as gis_models
 
 GENDER_CHOICES = (
 	('male', 'Male'),
@@ -62,6 +63,7 @@ class UserProfile(models.Model):
 	address = models.TextField(blank=True, null=True)
 	latitude = models.CharField(max_length=255, blank=True, null=True)
 	longitude = models.CharField(max_length=255, blank=True, null=True)
+	location_point = gis_models.PointField(blank=True, null=True)
 	is_hospital = models.BooleanField(default=False)
 
 	def __unicode__(self):

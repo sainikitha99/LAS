@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.gis.geos import Point
 
 from core.models import UserProfile
 
@@ -121,6 +122,9 @@ def hospital_registration(request):
 		hos_profile.hos_dir_name = data['hos_dir_name']
 		hos_profile.ambulance_count = data['ambulance_count']
 		hos_profile.is_hospital = True
+		hos_profile.latitude = data["latitude"]
+		hos_profile.longitude = data["longitude"]
+		hos_profile.location_point = Point(float(data["longitude"]), float(data["latitude"]))
 
 		hos_profile.address = data["formatted_address"]
 		hos_profile.save()

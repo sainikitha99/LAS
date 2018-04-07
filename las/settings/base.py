@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'authentication',
     'core',
     'social_django',
@@ -86,16 +87,12 @@ WSGI_APPLICATION = 'las.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'las', # database_name
-        'USER': 'las', # database_user
-        'PASSWORD': 'las1pass', # password
-        'HOST': 'localhost', # host
-        'PORT': '5432' # default port for postgres.
-    }
+    'default': dj_database_url.config(default="postgres://las:las1pass@localhost:5432/las")
 }
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 
 # Password validation
