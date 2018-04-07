@@ -3,12 +3,18 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from core.models import UserRequest
 from django.contrib import messages
+from django.http import JsonResponse
+from django.conf import settings
+from django.contrib.gis.geos import Point
+from django.contrib.gis.measure import D
 
+from core.models import UserRequest, UserProfile
 
 
 def index(request):
+	context = {}
+	context["BASE_URI"] = settings.BASE_URI
 	if request.user.is_authenticated.value == True:
 		if request.user.userprofile.is_hospital:
 			return redirect('hospital_dashboard')
@@ -19,7 +25,7 @@ def index(request):
 				return redirect('user_dashboard')
 			except:
 				return redirect('edit_profile')
-	return render(request, 'base.html')
+	return render(request, 'base.html', context)
 
 
 def overview(request):
@@ -56,6 +62,8 @@ def user_dashboard(request):
 
 def raise_request(request):
 	context = {}
+	context["BASE_URI"] = settings.BASE_URI
+
 	if request.user.is_authenticated:
 		context["username"] = request.user.first_name
 		context["mobile_number"] = request.user.userprofile.mobile_number
@@ -81,6 +89,20 @@ def raise_request(request):
 		request_obj.save()
 		messages.success(request, "User Request Updated.")
 	return render(request, 'user_dashboard/raise_request.html', context)
+
+
+def get_hospitals_near_by(request):
+	# GET HOSPITAL WITHIN 5 KM
+	hnb = {"items": []}
+	if "latitude" in request.GET and "longitude" in request.GET:
+		lat = float(request.GET["latitude"])
+		lng = float(request.GET["longitude"])
+		point = Point(lng, lat)
+		hospitals_near_by = UserProfile.objects.filter(location_point__distance_lte=(point, D(km=5)), is_hospital=True)
+		for hospital in hospitals_near_by:
+			hnb["items"].append({"name": hospital.user.username, "latitude": float(hospital.latitude), "longitude": float(hospital.longitude)})
+
+	return JsonResponse(hnb)
 
 
 def user_requests(request):

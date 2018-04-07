@@ -21,6 +21,8 @@
        };
        $("#latitude").val(pos.lat);
        $("#longitude").val(pos.lng);
+       $.cookie("latitude", pos.lat);
+       $.cookie("longitude", pos.lng);
        GetAddress();
        var marker = new google.maps.Marker({
        position: pos,
@@ -28,8 +30,25 @@
        draggable:true,
        title: 'Location Found'
      });
+       marker.setMap(map);
 
-      marker.setMap(map);
+       if ($.cookie("latitude") && $.cookie("longitude")) {
+        $.ajax({
+          url: SRC.BASE_URI + "hospital/nearby/?latitude=" + $.cookie("latitude") + "&longitude=" + $.cookie("longitude"),
+          success: function(response) {
+            data = response.items
+            $.each(data, function(key, value) {
+              var marker = new google.maps.Marker({
+                position: {lat: value.latitude, lng: value.longitude},
+                map: map,
+                draggable: false,
+                title: value.name
+              });
+              marker.setMap(map);
+            });
+          }
+        });
+       }
       google.maps.event.addListener(marker, 'drag', function(event){
         $("#latitude").val(event.latLng.lat());
         $("#longitude").val(event.latLng.lng());

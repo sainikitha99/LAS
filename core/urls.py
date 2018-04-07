@@ -19,6 +19,7 @@ CORE_URLS = [
     url(r'^user/feedback/',user_feedback, name='user_feedback'),
 
 	url(r'^hospital/requests/requests_list/',requests_list, name='requests_list'),
+    url(r'^hospital/nearby/', get_hospitals_near_by, name='get_hospitals_near_by'),
 
 
 ]

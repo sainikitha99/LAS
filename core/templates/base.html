@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/view_profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <script type="text/javascript">
+        var SRC = {}
+        SRC.BASE_URI = "{{ BASE_URI }}";
+    </script>
 
 
     <script type="text/javascript" src="{% static 'js/user_reg.js' %}"></script>
 
     <!-- JS IMPORTS -->
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.cookie.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/load_map.js' %}"></script>
 
