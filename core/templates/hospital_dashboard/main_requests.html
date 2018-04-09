@@ -3,69 +3,83 @@
 	{% include "hospital_dashboard/index.html" %}
 
 	<h1>request Page</h1>
-	<table>
+	<table class="table-striped">
 	  <tr>
 	    <th>Request id</th>
+			<th>Requested User Name</th>
 	    <th>status</th>
 	    <th>Count of injured</th>
+
 	  </tr>
+
 	  <tr>
 	    <td>req10</td>
+			<td>{{ request_obj.anonymous_user }}</td>
 	    <td>pending</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req9</td>
-	    <td>progress</td>
+			<td>{{ request_obj.anonymous_user }}</td>
+			<td>progress</td>
 	    <td>2</td>
 	  </tr>
 
 	  <tr>
 	    <td>req8</td>
-	    <td>Completed</td>
+			<td>{{ request_obj.anonymous_user }}</td>
+			<td>Completed</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req7</td>
-	    <td>pending</td>
+			<td>{{ request_obj.anonymous_user }}</td>
+			<td>pending</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req6</td>
+			<td>{{ request_obj.anonymous_user }}</td>
+
 	    <td>completed</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req5</td>
-	    <td>completed</td>
+	    <td>{{ request_obj.anonymous_user }}</td>
+			<td>completed</td>
 	    <td>2</td>
 	  </tr>
 
 	  <tr>
 	    <td>req4</td>
-	    <td>completed</td>
+	    <td>{{ request_obj.anonymous_user }}</td>
+			<td>completed</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req3</td>
-	    <td>completed</td>
+	    <td>{{ request_obj.anonymous_user }}</td>
+			<td>completed</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req2</td>
-	    <td>completed</td>
+	    <td>{{ request_obj.anonymous_user }}</td>
+			<td>completed</td>
 	    <td>1</td>
 	  </tr>
 
 	  <tr>
 	    <td>req1</td>
-	    <td>completed</td>
+	    <td>{{ request_obj.anonymous_user }}</td>
+			<td>completed</td>
 	    <td>2</td>
 	  </tr>
 	</table>

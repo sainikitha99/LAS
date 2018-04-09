@@ -6,7 +6,7 @@
  function initMap() {
    map = new google.maps.Map(document.getElementById('map'), {
      center: {lat: -34.397, lng: 150.644},
-     zoom: 14
+     zoom: 12
    });
    infoWindow = new google.maps.InfoWindow;
    $("#latitude").val("-34.397");
@@ -31,6 +31,11 @@
        title: 'Location Found'
      });
        marker.setMap(map);
+var infowindow = new google.maps.InfoWindow({
+  content:"Your location"
+  });
+
+infowindow.open(map,marker);
 
        if ($.cookie("latitude") && $.cookie("longitude")) {
         $.ajax({
@@ -42,9 +47,15 @@
                 position: {lat: value.latitude, lng: value.longitude},
                 map: map,
                 draggable: false,
-                title: value.name
+                title: value.name,
+                
               });
               marker.setMap(map);
+              var infowindow = new google.maps.InfoWindow({
+                content:value.name
+                });
+
+              infowindow.open(map,marker);
             });
           }
         });
