@@ -16,15 +16,15 @@ def index(request):
 	context = {}
 	context["BASE_URI"] = settings.BASE_URI
 	if request.user.is_authenticated.value == True:
-		if request.user.userprofile.is_hospital:
-			return redirect('hospital_dashboard')
-		else:
-			user_obj = User.objects.get(id=request.user.id)
-			try:
+		try:
+			if request.user.userprofile.is_hospital:
+				return redirect('hospital_dashboard')
+			else:
+				user_obj = User.objects.get(id=request.user.id)
 				user_profile = user_obj.userprofile
 				return redirect('user_dashboard')
-			except:
-				return redirect('edit_profile')
+		except:
+			return redirect('edit_profile')
 	return render(request, 'base.html', context)
 
 

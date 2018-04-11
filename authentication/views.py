@@ -67,6 +67,7 @@ def login_view(request):
 		isHospital = False
 		hos_reg_id = ""
 		user_q = []
+
 		if "hos_reg_id" in request.POST:
 			hos_reg_id = request.POST['hos_reg_id']
 			hospitalprofile = UserProfile.objects.filter(hos_reg_id=hos_reg_id).first()
