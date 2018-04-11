@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
+import time
 
 from core.models import UserRequest, UserProfile
 
@@ -45,7 +46,25 @@ def hospital_dashboard(request):
 
 
 def hospital_requests(request):
-	return render(request, 'hospital_dashboard/main_requests.html')
+			if request.user.is_authenticated.value == True:
+				request_obj = UserRequest()
+				context = {}
+				request_obj = UserRequest.objects.get(mobile=request_obj.mobile)
+
+				context["name"] = request_obj.user.username
+				context["mobile"] = request_obj.mobile
+				context["latitude"] = request_obj.latitude
+				context["longitude"] = request_obj.longitude
+				context["reason"] = request_obj.reason
+				context["severity"] = request_obj.severity
+				context["count"] = request_obj.count_of_persons_injured
+				context["status"] = request_obj.status
+				context["hospital"] = request_obj.hospital
+				return render(request, 'hospital_dashboard/main_requests.html', context)
+			else:
+				return redirect('/')
+
+			return render(request, 'hospital_dashboard/main_requests.html')
 
 
 def hospital_notifications(request):
@@ -87,7 +106,16 @@ def raise_request(request):
 		request_obj.latitude = data["latitude"]
 		request_obj.longitude = data["longitude"]
 		request_obj.save()
+
 		messages.success(request, "User Request Updated.")
+
+		entry = UserRequest.objects.get(mobile=request_obj.mobile)
+
+
+
+
+
+		messages.success(request, "User Request Accepted. by Hospital {0}".format(entry.hospital))
 	return render(request, 'user_dashboard/raise_request.html', context)
 
 
