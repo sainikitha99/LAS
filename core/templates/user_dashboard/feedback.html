@@ -1,6 +1,30 @@
 {% block content_body %}
 
 	{% include "user_dashboard/index.html" %}
-	<h1 align="left">Rate our Service</h1>
-
+	<script>
+function thankyou() {
+    alert("Thankyou for your valuable feedback!!");
+}
+</script>
+	<h1 align="left">Kindly give your feedback</h1><br/>
+	<form action="{% url 'user_dashboard' %}" method=POST>{% csrf_token %}
+	<div class="form-group">
+		<label for="rate">what do you feel about LAS??</label>
+		<select class="form-control" id="rate" name="rate" required>
+		<option>Excellent</option>
+		<option>Good</option>
+		<option>Average</option>
+		<option>Bad</option>
+		<option>Poor</option>
+		</select>
+	 </div>
+	 <div class="form-group">
+		 <label for="comment">Comment</label>
+		 <textarea class="form-control" id="comment" name="comment"></textarea>
+	 </div>
+	 <div align="center">
+	 <button type="submit" onclick="thankyou()" class="btn btn-default" style="margin-left;">Submit</button>
+		 <button type="reset" class="btn btn-default" style="margin-left;">Reset</button>
+	</div>
+</form>
 {% endblock %}

@@ -166,16 +166,18 @@ def edit_profile(request):
 			context['google_auth'] = True
 			return render(request, 'edit_profile.html', context)
 		context["gender"] = user_obj.userprofile.gender
-		day = str(user_obj.userprofile.dob.day)
-		month = str(user_obj.userprofile.dob.month)
-		year = str(user_obj.userprofile.dob.year)
-		if len(str(user_obj.userprofile.dob.day)) == 1:
-			day = "0"+ day
-		if len(str(user_obj.userprofile.dob.month)) == 1:
-			month = "0"+ month
-		if len(str(user_obj.userprofile.dob.year)) == 1:
-			year = "0"+ year
-		context["dateOfBirth"] = "{}-{}-{}".format(year, month, day)
+		context["dateOfBirth"] = ""
+		if user_obj.userprofile.dob:
+			day = str(user_obj.userprofile.dob.day)
+			month = str(user_obj.userprofile.dob.month)
+			year = str(user_obj.userprofile.dob.year)
+			if len(str(user_obj.userprofile.dob.day)) == 1:
+				day = "0"+ day
+			if len(str(user_obj.userprofile.dob.month)) == 1:
+				month = "0"+ month
+			if len(str(user_obj.userprofile.dob.year)) == 1:
+				year = "0"+ year
+			context["dateOfBirth"] = "{}-{}-{}".format(year, month, day)
 		context["bloodGroup"] = user_obj.userprofile.blood_group
 		context["mobileNumber"] = user_obj.userprofile.mobile_number
 		context["alternateNumber"] = user_obj.userprofile.alternate_number

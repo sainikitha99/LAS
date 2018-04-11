@@ -13,7 +13,7 @@
 
 <h1 align='center'> My Profile</h1>
 {% if request.user.is_authenticated %}
-  <div class='table'>
+  <div class='table' align="center">
     <table>
       <tr class>
         <td class='h'>Full Name</td>
@@ -45,18 +45,10 @@
         <td class='h'>Email id</td>
         <td>{{ request.user.email }}</td>
       </tr>
-      <tr>
-        <td class='h'>Address</td>
-        <td><textarea rows="4" cols="15">{{ request.user.userprofile.address }}</textarea></td>
-      </tr>
-    </table>
 
-    </div>
-    <div class="col-md-1 las-header">
-      <ul class="nav navbar-nav">
-        <a href="{% url 'edit_profile' %}" class="btn btn-primary btn-md" style="margin-left:100px;">Edit Profile</a>
-      </ul>
-    </div>
+    </table>
+  <a href="{% url 'edit_profile' %}" class="btn btn-primary btn-md"  align="center">Edit Profile</a>
+</div>
 {% endif %}
 
 {% endblock %}
